@@ -15,7 +15,7 @@ public class Lever : MonoBehaviour
     
     private Vector3 screenPoint;
     private Vector3 initialPosition;
-    private Vector3 offset = new Vector3(0.0f, 0.8f, 0);
+    private Vector3 offset = new Vector3(0.0f, 0.6f, 0);
     private float yPos;
     public Position Position
     {
@@ -59,14 +59,30 @@ public class Lever : MonoBehaviour
     {
         Vector3 cursorPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
         Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorPoint);
-        /*if (cursorPosition.y - 0.8f > yPos)
-            Position = Position.Up;
-        if (cursorPosition.y + 0.8f < yPos)
-            Position = Position.Down;*/
-        Vector3 heading = cursorPosition - initialPosition;
-        Vector3 direction = heading.normalized;
-        Position = (Position) direction.y;
-        Debug.Log(heading);
+        /*if (cursorPosition.y - yPos > offset.y)
+        {
+            switch (_position)
+            {
+                case Position.Null:
+                    Position = Position.Up;
+                    break;
+                case Position.Down:
+                    Position = Position.Null;
+                    break;
+            }
+        }
+        if (cursorPosition.y - yPos < -offset.y)
+        {
+            switch (_position)
+            {
+                case Position.Null:
+                    Position = Position.Down;
+                    break;
+                case Position.Up:
+                    Position = Position.Null;
+                    break;
+            }
+        }*/
     }
     
     void OnMouseDown()

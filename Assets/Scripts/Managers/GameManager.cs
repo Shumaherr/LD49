@@ -14,14 +14,16 @@ public class GameManager : Singleton<GameManager>
 
     private List<Transform> _atomsTransforms;
     private List<Rod> _rodsComponents;
-    private ObjectPool _objectPool;
+    public ObjectPool garbagePool;
+    public ObjectPool neutronPool;
     private UIManager _uiManager;
 
     // Start is called before the first frame update
     void Start()
     {
         _uiManager = GetComponent<UIManager>();
-        _objectPool = GetComponent<ObjectPool>();
+        garbagePool = GameObject.Find("GarbagePool").GetComponent<ObjectPool>();
+        neutronPool = GameObject.Find("NeutronPool").GetComponent<ObjectPool>();
         _atomsTransforms = new List<Transform>();
         _rodsComponents = new List<Rod>();
         foreach (var rod in rods)
@@ -46,7 +48,7 @@ public class GameManager : Singleton<GameManager>
     }
 
     //Return random position inside game field, that is not taken by another atom
-    private Vector3 GetNewAtomPos()
+    public Vector3 GetNewAtomPos()
     {
         Vector3 pos = new Vector3();
         while (_atomsTransforms.Any(transform1 => transform1.position.Compare(pos, 1)))

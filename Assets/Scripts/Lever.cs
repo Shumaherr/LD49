@@ -10,9 +10,11 @@ public enum Position
 }
 public class Lever : MonoBehaviour
 {
+    [SerializeField] private Transform rodTransform;
+    
     private Position _position;
 
-    
+    private Rod _rod;
     private Vector3 screenPoint;
     private Vector3 initialPosition;
     private Vector3 offset = new Vector3(0.0f, 0.6f, 0);
@@ -27,30 +29,29 @@ public class Lever : MonoBehaviour
         } 
     }
 
-    // Start is called before the first frame update
     void Start()
     {
+        _rod = rodTransform.GetComponent<Rod>();
         Position = Position.Null;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         
     }
 
+
     public void ChangePosition(Position newPos)
-    {
+    { 
         switch (newPos)
         {
             case Position.Up:
                 transform.localPosition = new Vector2(transform.localPosition.x, 0.65f);
+                _rod.MovingDirection = Direction.Up;
                 break;
             case Position.Null:
                 transform.localPosition = Vector2.zero;
+                _rod.MovingDirection = Direction.Null;
                 break;
             case Position.Down:
                 transform.localPosition = new Vector2(transform.localPosition.x, -0.5f);
+                _rod.MovingDirection = Direction.Down;
                 break;
         }
     }
@@ -59,7 +60,7 @@ public class Lever : MonoBehaviour
     {
         Vector3 cursorPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
         Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorPoint);
-        /*if (cursorPosition.y - yPos > offset.y)
+        if (cursorPosition.y - yPos > offset.y)
         {
             switch (_position)
             {
@@ -82,7 +83,7 @@ public class Lever : MonoBehaviour
                     Position = Position.Null;
                     break;
             }
-        }*/
+        }
     }
     
     void OnMouseDown()

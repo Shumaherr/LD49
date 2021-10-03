@@ -63,9 +63,5 @@ public class GameManager : Singleton<GameManager>
     {
         
     }
-
-    public void MoveBar(int rodNum, Direction direction)
-    {
-        _rodsComponents[rodNum - 1].MoveRod(direction);
-    }
+    
 }

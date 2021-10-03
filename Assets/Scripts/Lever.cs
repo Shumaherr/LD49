@@ -8,10 +8,11 @@ public enum Position
     Null = 0,
     Down = -1
 }
+
 public class Lever : MonoBehaviour
 {
     [SerializeField] private Transform rodTransform;
-    
+
     private Position _position;
 
     private Rod _rod;
@@ -19,6 +20,7 @@ public class Lever : MonoBehaviour
     private Vector3 initialPosition;
     private Vector3 offset = new Vector3(0.0f, 0.6f, 0);
     private float yPos;
+
     public Position Position
     {
         get => _position;
@@ -26,19 +28,18 @@ public class Lever : MonoBehaviour
         {
             _position = value;
             ChangePosition(_position);
-        } 
+        }
     }
 
     void Start()
     {
         _rod = rodTransform.GetComponent<Rod>();
         Position = Position.Null;
-        
     }
 
 
     public void ChangePosition(Position newPos)
-    { 
+    {
         switch (newPos)
         {
             case Position.Up:
@@ -60,36 +61,21 @@ public class Lever : MonoBehaviour
     {
         Vector3 cursorPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
         Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorPoint);
-        if (cursorPosition.y - yPos > offset.y)
+        int steps = Mathf.RoundToInt((cursorPosition.y - yPos) / offset.y);
+        Debug.Log(steps);
+        Position = steps switch
         {
-            switch (_position)
-            {
-                case Position.Null:
-                    Position = Position.Up;
-                    break;
-                case Position.Down:
-                    Position = Position.Null;
-                    break;
-            }
-        }
-        if (cursorPosition.y - yPos < -offset.y)
-        {
-            switch (_position)
-            {
-                case Position.Null:
-                    Position = Position.Down;
-                    break;
-                case Position.Up:
-                    Position = Position.Null;
-                    break;
-            }
-        }
+            1 => Position.Up,
+            0 => Position.Null,
+            -1 => Position.Down,
+            _ => Position
+        };
     }
-    
+
     void OnMouseDown()
     {
         Vector3 cursorPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-        
+
         initialPosition = Camera.main.ScreenToWorldPoint(cursorPoint);
         yPos = initialPosition.y;
     }

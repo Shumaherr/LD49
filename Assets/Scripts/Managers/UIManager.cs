@@ -11,11 +11,17 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         _statusBar = stateBar.GetComponent<Image>();
+        GameManager.Instance.OnLoadChanged += InstanceOnOnLoadChanged;
     }
 
     public void SetAmountOfPercent(float percent)
     {
         _statusBar.fillAmount = percent;
+    }
+
+    private void InstanceOnOnLoadChanged(int param)
+    {
+        SetAmountOfPercent(param / 100);
     }
 
 }

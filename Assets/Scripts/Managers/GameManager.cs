@@ -52,6 +52,7 @@ public class GameManager : Singleton<GameManager>
         {
             _rodsComponents.Add(rod.GetComponent<Rod>());
         }
+
         InitField();
     }
 

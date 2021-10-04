@@ -5,23 +5,22 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    private FMOD.Studio.EventInstance _mainMusicInstance;
+    //private FMOD.Studio.EventInstance _mainMusicInstance;
 
     private void Start()
     {
-        _mainMusicInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Music/Main_theme");
-        PlayMainMusic(50);
-        GameManager.Instance.OnLoadChanged += InstanceOnOnLoadChanged;
-    }
-    private void InstanceOnOnLoadChanged(int load)
-    {
-        _mainMusicInstance.setParameterByName("Load", load);
-        Debug.Log(load);
+        //_mainMusicInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Music/Main_theme");
+        //GameManager.Instance.OnLoadChanged += InstanceOnOnLoadChanged;
     }
 
-    public void PlayMainMusic(int parameter)
-    {
-        _mainMusicInstance.setParameterByName("Load", parameter);
-        _mainMusicInstance.start();
-    }
+    //private void InstanceOnOnLoadChanged(int load)
+    //{
+    //    _mainMusicInstance.setParameterByName("Load", load);
+    //}
+
+    //public void PlayMainMusic(int parameter)
+    //{
+    //    _mainMusicInstance.setParameterByName("Load", parameter);
+    //    _mainMusicInstance.start();
+    //}
 }

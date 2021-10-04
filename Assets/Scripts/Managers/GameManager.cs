@@ -43,7 +43,7 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         _uiManager = GetComponent<UIManager>();
-        //_soundManager = GetComponent<SoundManager>();
+            //_soundManager = GetComponent<SoundManager>();
         //_soundManager.PlayMainMusic(50); //TEMP TODO set this parametr via delegate
         garbagePool = GameObject.Find("GarbagePool").GetComponent<ObjectPool>();
         neutronPool = GameObject.Find("NeutronPool").GetComponent<ObjectPool>();

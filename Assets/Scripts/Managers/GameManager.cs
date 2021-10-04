@@ -17,11 +17,18 @@ public class GameManager : Singleton<GameManager>
     public ObjectPool garbagePool;
     public ObjectPool neutronPool;
     private UIManager _uiManager;
+    private SoundManager _soundManager;
+    
+    
+    public delegate void OnLoadChangedDelegate(int load);
+    public event OnLoadChangedDelegate OnLoadChanged;
 
     // Start is called before the first frame update
     void Start()
     {
         _uiManager = GetComponent<UIManager>();
+        _soundManager = GetComponent<SoundManager>();
+        _soundManager.PlayMainMusic(50); //TEMP TODO set this parametr via delegate
         garbagePool = GameObject.Find("GarbagePool").GetComponent<ObjectPool>();
         neutronPool = GameObject.Find("NeutronPool").GetComponent<ObjectPool>();
         _atomsTransforms = new List<Transform>();

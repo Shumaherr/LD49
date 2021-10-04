@@ -26,7 +26,7 @@ public class Rod : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.position = new Vector2(transform.position.x, minY);
     }
 
     // Update is called once per frame

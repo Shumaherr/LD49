@@ -80,7 +80,7 @@ public class GameManager : Singleton<GameManager>
             bool leftSide = Random.Range(0f, 100f) > 50 ? true : false;
             var x = leftSide
                 ? Random.Range(gameField.xMin, rods[0].position.x - offsetRods)
-                : Random.Range(gameField.xMax, rods[1].position.x + offsetRods);
+                : Random.Range(rods[1].position.x + offsetRods, gameField.xMax);
             pos = new Vector3(x, Random.Range(gameField.yMin, gameField.yMax));
         }
         return pos;

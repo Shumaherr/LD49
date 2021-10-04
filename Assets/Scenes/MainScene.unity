@@ -1183,11 +1183,13 @@ MonoBehaviour:
     height: 5.34
   rods:
   - {fileID: 674356487}
+  - {fileID: 1192374369}
   power: 50
   powerReductionPerSecond: 4
   score: 0
   garbagePool: {fileID: 1504792364}
   neutronPool: {fileID: 1313642624}
+  offsetRods: 0.1
 --- !u!4 &1573970027
 Transform:
   m_ObjectHideFlags: 0

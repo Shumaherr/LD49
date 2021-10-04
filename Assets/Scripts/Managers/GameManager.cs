@@ -77,10 +77,18 @@ public class GameManager : Singleton<GameManager>
         Vector3 pos = new Vector3();
         while (_atomsTransforms.Any(transform1 => transform1.position.Compare(pos, 1)))
         {
-            bool leftSide = Random.Range(0f, 100f) > 50 ? true : false;
-            var x = leftSide
-                ? Random.Range(gameField.xMin, rods[0].position.x - offsetRods)
-                : Random.Range(rods[1].position.x + offsetRods, gameField.xMax);
+            bool center = Random.Range(0f, 100f) > 50;
+            bool leftSide = Random.Range(0f, 100f) > 50;
+            float x = 0;
+            if (!center)
+            {
+                x = leftSide
+                    ? Random.Range(gameField.xMin, rods[0].position.x - offsetRods)
+                    : Random.Range(rods[1].position.x + offsetRods, gameField.xMax);
+            }
+            else
+                x = Random.Range(rods[0].position.x + offsetRods, rods[1].position.x - offsetRods);
+
             pos = new Vector3(x, Random.Range(gameField.yMin, gameField.yMax));
         }
         return pos;

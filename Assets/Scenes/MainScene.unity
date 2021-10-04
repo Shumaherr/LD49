@@ -764,7 +764,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1251708198}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 494689082}
@@ -1183,6 +1183,9 @@ MonoBehaviour:
     height: 5.34
   rods:
   - {fileID: 674356487}
+  power: 50
+  powerReductionPerSecond: 4
+  score: 0
   garbagePool: {fileID: 1504792364}
   neutronPool: {fileID: 1313642624}
 --- !u!4 &1573970027
@@ -1211,7 +1214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e744dfc7d4e0f74280c058ebcf5d44a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateBar: {fileID: 959864731}
+  stateBar: {fileID: 1753182150}
 --- !u!114 &1573970029
 MonoBehaviour:
   m_ObjectHideFlags: 0

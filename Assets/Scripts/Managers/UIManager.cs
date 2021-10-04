@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
 
     private void InstanceOnOnLoadChanged(int param)
     {
-        SetAmountOfPercent(param / 100);
+        SetAmountOfPercent(param / 100f);
     }
 
 }

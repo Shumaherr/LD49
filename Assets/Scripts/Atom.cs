@@ -12,7 +12,7 @@ public class Atom : Particle
     [SerializeField] private int newAtoms = 2;
     [SerializeField] private int newNeutronsMin = 1;
     [SerializeField] private int newNeutronsMax = 3;
-
+    [SerializeField] private int powerPerFission = 1;
     private SpriteRenderer[] renderers;
     private Collider2D[] collider2Ds;
     private Animator animator;
@@ -47,6 +47,8 @@ public class Atom : Particle
     {
         animator.speed = 0;
         fissionProgress = 0;
+        GameManager.Instance.Power += powerPerFission;
+        GameManager.Instance.score++;
         CreateNewParticles();
         transform.position = GameManager.Instance.GetNewAtomPos();
         rb2d.velocity = Vector2.zero;

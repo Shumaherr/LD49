@@ -49,12 +49,13 @@ MonoBehaviour:
   minSpeed: 2
   maxSpeed: 5
   fissionStep: 25
-  fissionChance: 25
+  fissionChance: 50
   atomCooldownMin: 1
   atomCooldownMax: 3
   newAtoms: 2
   newNeutronsMin: 1
   newNeutronsMax: 3
+  powerPerFission: 3
 --- !u!58 &9001654059193265906
 CircleCollider2D:
   m_ObjectHideFlags: 0

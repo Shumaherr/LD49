@@ -10,7 +10,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private Transform atomPrefab;
     [SerializeField] private Rect gameField;
     [SerializeField] private List<Transform> rods;
-    
+    [SerializeField] private float power;
+    [SerializeField] private float powerReductionPerSecond;
+    public int score;
 
     private List<Transform> _atomsTransforms;
     private List<Rod> _rodsComponents;
@@ -18,7 +20,20 @@ public class GameManager : Singleton<GameManager>
     public ObjectPool neutronPool;
     private UIManager _uiManager;
     private SoundManager _soundManager;
-    
+
+    public float Power
+    {
+        get => power;
+        set
+        {
+            power = value;
+            OnLoadChanged.Invoke(Mathf.RoundToInt(power));
+            if (power < 0 || power > 100)
+            {
+                GameOver();
+            }
+        }
+    }
     
     public delegate void OnLoadChangedDelegate(int load);
     public event OnLoadChangedDelegate OnLoadChanged;
@@ -68,7 +83,11 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
-        
+        Power -= powerReductionPerSecond * Time.deltaTime;
     }
-    
+
+    void GameOver()
+    {
+        //TODO
+    }
 }

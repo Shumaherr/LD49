@@ -20,6 +20,7 @@ public class GameManager : Singleton<GameManager>
     public ObjectPool neutronPool;
     private UIManager _uiManager;
     private SoundManager _soundManager;
+    [SerializeField] private float offsetRods;
 
     public float Power
     {
@@ -76,7 +77,11 @@ public class GameManager : Singleton<GameManager>
         Vector3 pos = new Vector3();
         while (_atomsTransforms.Any(transform1 => transform1.position.Compare(pos, 1)))
         {
-            pos = new Vector3(Random.Range(gameField.xMin, gameField.xMax), Random.Range(gameField.yMin, gameField.yMax));
+            bool leftSide = Random.Range(0f, 100f) > 50 ? true : false;
+            var x = leftSide
+                ? Random.Range(gameField.xMin, rods[0].position.x - offsetRods)
+                : Random.Range(gameField.xMax, rods[1].position.x + offsetRods);
+            pos = new Vector3(x, Random.Range(gameField.yMin, gameField.yMax));
         }
         return pos;
     }

@@ -19,7 +19,7 @@ public class GameManager : Singleton<GameManager>
     public ObjectPool garbagePool;
     public ObjectPool neutronPool;
     private UIManager _uiManager;
-    private SoundManager _soundManager;
+    //private SoundManager _soundManager;
     [SerializeField] private float offsetRods;
 
     public float Power
@@ -43,8 +43,8 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         _uiManager = GetComponent<UIManager>();
-        _soundManager = GetComponent<SoundManager>();
-        _soundManager.PlayMainMusic(50); //TEMP TODO set this parametr via delegate
+        //_soundManager = GetComponent<SoundManager>();
+        //_soundManager.PlayMainMusic(50); //TEMP TODO set this parametr via delegate
         garbagePool = GameObject.Find("GarbagePool").GetComponent<ObjectPool>();
         neutronPool = GameObject.Find("NeutronPool").GetComponent<ObjectPool>();
         _atomsTransforms = new List<Transform>();

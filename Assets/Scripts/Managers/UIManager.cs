@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
         _statusBar.fillAmount = percent;
     }
 
-    private void InstanceOnOnLoadChanged(int param)
+    public void InstanceOnOnLoadChanged(int param)
     {
         SetAmountOfPercent(param / 100f);
     }

@@ -13,7 +13,7 @@ public class SoundManager : MonoBehaviour
         GameManager.Instance.OnLoadChanged += InstanceOnOnLoadChanged;
     }
 
-    private void InstanceOnOnLoadChanged(int load)
+    public void InstanceOnOnLoadChanged(int load)
     {
         _mainMusicInstance.setParameterByName("Load", load);
     }

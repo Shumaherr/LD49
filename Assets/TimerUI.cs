@@ -23,6 +23,9 @@ public class TimerUI : MonoBehaviour
         Timer = timeToWin - Time.timeSinceLevelLoad;
         if (Timer < 0)
             GameManager.Instance.GameOver();
-        _text.text = Mathf.CeilToInt(Timer).ToString();
+        if (Mathf.CeilToInt(Timer) > 9)
+            _text.text = "00:" + Mathf.CeilToInt(Timer).ToString();
+        else
+            _text.text = "00:0" + Mathf.CeilToInt(Timer).ToString();
     }
 }

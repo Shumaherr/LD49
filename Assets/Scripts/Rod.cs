@@ -37,12 +37,15 @@ public class Rod : MonoBehaviour
             switch (movingDirection)
             {
                 case Direction.Up:
+                    GameManager.Instance.RodMoved(this.transform);
                     MoveRod(Direction.Up, Time.deltaTime);
                     break;
                 case Direction.Down:
+                    GameManager.Instance.RodMoved(this.transform);
                     MoveRod(Direction.Down,  Time.deltaTime);
                     break;
                 case Direction.Null:
+                    GameManager.Instance.RodStopped(this.transform);
                     break;
             }
         }
@@ -53,6 +56,7 @@ public class Rod : MonoBehaviour
         float newY = transform.position.y + deltaTime * (int) dir;
         if (newY > maxY || newY < minY)
         {
+            GameManager.Instance.RodStopped(this.transform);
             return;
         }
         transform.position = new Vector3(transform.position.x, newY);

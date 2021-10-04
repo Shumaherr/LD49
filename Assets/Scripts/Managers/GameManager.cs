@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -12,6 +13,10 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private List<Transform> rods;
     [SerializeField] private float power;
     [SerializeField] private float powerReductionPerSecond;
+    [SerializeField] private GameObject lowEnergyCanvas;
+    [SerializeField] private GameObject highEnergyCanvas;
+    [SerializeField] private GameObject winCanvas;
+    private bool gameOver;
     public int score;
 
     private List<Transform> _atomsTransforms;
@@ -27,9 +32,11 @@ public class GameManager : Singleton<GameManager>
         get => power;
         set
         {
+            if (gameOver)
+                return;
             power = value;
             OnLoadChanged.Invoke(Mathf.RoundToInt(power));
-            if (power < 0 || power > 100)
+            if ((power < 0 || power > 100))
             {
                 GameOver();
             }
@@ -42,6 +49,9 @@ public class GameManager : Singleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
+        gameOver = false;
+        score = 0;
+        Time.timeScale = 1;
         _uiManager = GetComponent<UIManager>();
         _soundManager = GetComponent<SoundManager>();
         _soundManager.PlayMainMusic(50); //TEMP TODO set this parametr via delegate
@@ -100,8 +110,21 @@ public class GameManager : Singleton<GameManager>
         Power -= powerReductionPerSecond * Time.deltaTime;
     }
 
-    void GameOver()
+    public void GameOver()
     {
-        //TODO
+        Debug.Log("GameOver");
+        gameOver = true;
+        Time.timeScale = 0;
+        if (power > 100)
+            highEnergyCanvas.SetActive(true);
+        else if (power < 0)
+            lowEnergyCanvas.SetActive(true);
+        else
+            winCanvas.SetActive(true);
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene("MainScene");
     }
 }

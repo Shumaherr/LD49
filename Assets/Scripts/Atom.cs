@@ -45,6 +45,7 @@ public class Atom : Particle
     }
     private void DoFission()
     {
+        GameManager.Instance.PlayFissionSFX();
         animator.speed = 0;
         fissionProgress = 0;
         GameManager.Instance.Power += powerPerFission;
@@ -97,8 +98,9 @@ public class Atom : Particle
         fissionProgress = 0;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    protected override void OnCollisionEnter2D(Collision2D other)
     {
+        base.OnCollisionEnter2D(other);
         if (other.gameObject.TryGetComponent(out Neutron tmp))
         {
             DoFission();

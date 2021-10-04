@@ -55,6 +55,7 @@ public class Lever : MonoBehaviour
                 _rod.MovingDirection = Direction.Down;
                 break;
         }
+        GameManager.Instance.LeverMoved(); //TODO Fix stacking sound on button pressed
     }
 
     private void OnMouseDrag()

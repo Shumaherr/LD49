@@ -5,9 +5,13 @@ using UnityEngine;
 
 public class Neutron : Particle
 {
-    private void OnCollisionEnter2D(Collision2D other)
+    protected override void OnCollisionEnter2D(Collision2D other)
     {
+        base.OnCollisionEnter2D(other);
         if (other.gameObject.TryGetComponent(out Rod tmp))
+        {
+            GameManager.Instance.PlayAbsorbSFX();
             gameObject.SetActive(false);
+        }
     }
 }

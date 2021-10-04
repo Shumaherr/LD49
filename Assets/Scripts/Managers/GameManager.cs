@@ -63,7 +63,7 @@ public class GameManager : Singleton<GameManager>
         {
             _rodsComponents.Add(rod.GetComponent<Rod>());
         }
-
+        _soundManager.CreateInstancesForRods(rods);
         InitField();
     }
 
@@ -116,15 +116,54 @@ public class GameManager : Singleton<GameManager>
         gameOver = true;
         Time.timeScale = 0;
         if (power > 100)
+        {
             highEnergyCanvas.SetActive(true);
+            _soundManager.PlayMusicBoom();
+        }
         else if (power < 0)
+        {
             lowEnergyCanvas.SetActive(true);
+            _soundManager.PlayMusicLowEnergy();
+        }
         else
+        {
             winCanvas.SetActive(true);
+            _soundManager.PlayMusicWin();
+        }
     }
 
     public void RestartLevel()
     {
         SceneManager.LoadScene("MainScene");
+    }
+
+    public void LeverMoved()
+    {
+        _soundManager.PlayLeverSFX();
+    }
+
+    public void RodMoved(Transform rod)
+    {
+        _soundManager.StartRodSFX(rod);
+    }
+    
+    public void RodStopped(Transform rod)
+    {
+        _soundManager.StopRodSFX(rod);
+    }
+    
+    public void PlayAbsorbSFX()
+    {
+        _soundManager.PlayAbsorbSFX();
+    }
+    
+    public void PlayCollisionSFX()
+    {
+        _soundManager.PlayCollisionSFX();;
+    }
+    
+    public void PlayFissionSFX()
+    {
+        _soundManager.PlayFissionSFX();
     }
 }

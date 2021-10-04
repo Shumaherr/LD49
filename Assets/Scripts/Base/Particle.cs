@@ -26,6 +26,12 @@ public abstract class Particle : MonoBehaviour
     {
         rb2d.velocity = Vector2.up.Rotate(Random.Range(0f, 360f)) * Random.Range(minSpeed, maxSpeed);
     }
+
+    protected virtual void OnCollisionEnter2D(Collision2D other)
+    {
+        GameManager.Instance.PlayCollisionSFX();
+    }
+
     /*
     protected abstract void Move();
     protected abstract void ChangeDirection(Vector2 dir);*/

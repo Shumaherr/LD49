@@ -151,7 +151,7 @@ RectTransform:
   m_GameObject: {fileID: 15419229}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 1147102698}
   m_Father: {fileID: 537417373}
@@ -2977,7 +2977,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d40398149842fff49b99d7006961336b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfAtoms: 5
+  numberOfAtoms: 12
   atomPrefab: {fileID: 9001654059193265901, guid: 5960b3565117b274d8e870afbc555c55, type: 3}
   gameField:
     serializedVersion: 2

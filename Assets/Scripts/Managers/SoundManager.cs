@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    private FMOD.Studio.EventInstance _mainMusicInstance;
-    private FMOD.Studio.EventInstance _mainAmbienceInstance;
-    private Dictionary<Transform, FMOD.Studio.EventInstance> _rodInstances;
+    private EventInstance _mainMusicInstance;
+    private EventInstance _mainAmbienceInstance;
+    private Dictionary<Transform, EventInstance> _rodInstances;
 
     private void Awake()
     {
@@ -77,11 +77,10 @@ public class SoundManager : MonoBehaviour
 
     public void CreateInstancesForRods(List<Transform> rods)
     {
-        FMOD.Studio.EventInstance instance = new EventInstance();
         foreach (var rod in rods)
         {
             //instance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(rod.gameObject));
-            _rodInstances.Add(rod,_mainMusicInstance = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Rod_move"));
+            _rodInstances.Add(rod, FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Rod_move"));
         }
     }
 
